@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Youtube from './Youtube';
 import { gapiConfig } from './config';
+import Search from './containers/Search';
 
 class App extends Component {
   constructor() {
@@ -10,18 +11,13 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    window.gapi.load('client', () => {
-      gapiConfig().then(() => {
-        this.searchYoutube().then(console.log)
-      })
-    })   
+    window.gapi.load('client', gapiConfig)   
   }
-  searchYoutube = () => window.gapi.client.youtube.search.list({
-    "part": "id, snippet"
-  })
+  
   render() {
     return (
       <div className="App">
+        <Search />
         <Youtube />
       </div>
     );
