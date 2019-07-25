@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Youtube from './Youtube';
-import { gapiConfig } from './config';
+import { gapiConfig } from './gapi.config';
 import Search from './containers/Search';
+import VideoList from './components/VideoList';
 
 class App extends Component {
   constructor() {
@@ -17,8 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search />
-        <Youtube />
+        <Search videos={videos => this.setState({videos})}/>
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }

@@ -1,8 +1,9 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import { connect } from 'react-redux';
 
-export default class Search extends Component {
+class Search extends Component {
     state = {
-        searchValue: ""
+        searchValue: "",
     }
     handleInput = (e) => {
         this.setState({searchValue: e.target.value})
@@ -13,15 +14,24 @@ export default class Search extends Component {
             "q": query
         });
         const videos = result.items;
-        this.setState({videos});
+        this.props.videos(videos);
     }
     render() {
-        console.log(this.state.searchValue)
+        console.log(this.props)
         return (
             <div className='search-container'>
                 <input type="text" onChange={this.handleInput} value={this.state.searchValue}/>
-                <button onClick={() => this.searchYoutube('iron maiden')}>Search</button>
+                <button onClick={() => this.searchYoutube(this.state.searchValue)}>Search</button>
             </div>
         )
     }
 }
+
+const reduxState = state => {
+    return state
+}
+const reduxDispatch = dispatch => {
+    return {}
+}
+
+export default connect(reduxState, reduxDispatch)(Search)
