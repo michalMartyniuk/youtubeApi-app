@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
 
-class Search extends Component {
+export default class Search extends Component {
     state = {
         searchValue: "",
     }
@@ -26,12 +25,3 @@ class Search extends Component {
         )
     }
 }
-
-const reduxState = state => {
-    return state
-}
-const reduxDispatch = dispatch => {
-    return {}
-}
-
-export default connect(reduxState, reduxDispatch)(Search)
