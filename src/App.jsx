@@ -1,27 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { gapiConfig } from './gapi.config';
-import Search from './containers/Search';
-import VideoList from './components/VideoList';
+import Search from './components/Search';
+import VideoList from './components/Video/VideoList';
+import Player from './components/Video/Player';
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      videos: []
-    }
-  }
-  componentDidMount() {
+function App() {
+  const [videos, setVideos] = useState(null)
+  const [selected_video, select_video] = useState(null)
+
+  useEffect(() => {
     window.gapi.load('client', gapiConfig)   
-  }
-  
-  render() {
-    return (
-      <div className="App">
-        <Search videos={videos => this.setState({videos})}/>
-        <VideoList videos={this.state.videos} />
-      </div>
-    );
-  }
+  })
+
+  useEffect(()=> console.log(selected_video))
+  return (
+    <div className="App">
+      <Search setVideos={setVideos}/>
+      <Player video={selected_video}/>
+      <VideoList videos={videos} select_video={select_video}/>
+    </div>
+  );
 }
 
 export default App;

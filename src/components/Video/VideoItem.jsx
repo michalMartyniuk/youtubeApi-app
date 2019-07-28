@@ -1,10 +1,8 @@
 import React from "react";
-import './VideoItem.scss';
 
-export default function VideoItem ({video}) {
-    console.log(video)
+export default function VideoItem ({video, select_video}) {
     return (
-        <div key={video.etag} className='video'>
+        <div className='video' onClick={ () => select_video(video.id.videoId) }>
             <img src={video.snippet.thumbnails.medium.url} alt="video thumbnail"/>
             <p className='video__title'>{video.snippet.title}</p>
             <p className='video__description'>{video.snippet.description}</p>
