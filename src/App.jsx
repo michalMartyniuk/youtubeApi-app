@@ -13,10 +13,11 @@ function App() {
   })
 
   useEffect(()=> console.log(selected_video))
+
   return (
     <div className="App">
       <Search setVideos={setVideos}/>
-      <Player video={selected_video}/>
+      <Player selected_video={selected_video}/>
       <VideoList videos={videos} select_video={select_video}/>
     </div>
   );
