@@ -3,6 +3,7 @@ import { gapiConfig } from './gapi.config';
 import Search from './components/Search';
 import VideoList from './components/Video/VideoList';
 import Player from './components/Video/Player';
+import StyledComponent from './components/StyledComponent';
 
 function App() {
   const [videos, setVideos] = useState(null)
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+      <StyledComponent />
       <Search setVideos={setVideos}/>
       <Player selected_video={selected_video}/>
       <VideoList videos={videos} select_video={select_video}/>
