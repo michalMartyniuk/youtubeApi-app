@@ -2,7 +2,6 @@ import React from 'react';
 import YouTube from 'react-youtube';
 
 export default function Player ({selected_video}) {
-    console.log(selected_video)
     const opts = {
       height: '500',
       width: '70%',
@@ -22,7 +21,6 @@ export default function Player ({selected_video}) {
  
 function onReady (event) {
     // access to player in all event handlers via event.target
-    console.log(event.target)
     // event.target.pauseVideo();
 }
   
