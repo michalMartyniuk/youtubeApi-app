@@ -1,8 +1,7 @@
-export default {
-    input: {
-        // backgroundColor: "orange"
-    },
+import { makeStyles } from '@material-ui/styles';
+
+export const useStyles = makeStyles({
     button: {
-        // backgroundColor: "blue"
-    }
-}
+        backgroundColor: ({ bg }) => bg,
+    },
+});
