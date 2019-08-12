@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
 
-export default function VideoItem ({ video, select_video }) {
-    return (
-        <div className='video' onClick={ () => select_video(video.id.videoId) }>
-            <img src={video.snippet.thumbnails.medium.url} alt="video thumbnail"/>
-            <p className='video__title'>{video.snippet.title}</p>
-            <p className='video__description'>{video.snippet.description}</p>
-        </div>
-    )
+export default function VideoItem({ video, onClick }) {
+  return (
+    <button
+      onClick={() => onClick(video)}
+    >{video.id.kind}</button>
+  )
 }
