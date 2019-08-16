@@ -1,19 +1,26 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { List, ListSubheader, ListItem, ListItemText } from '@material-ui/core';
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemText,
+  Fab
+} from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
 import clsx from 'clsx';
+import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    position: "relative",
+    bottom: 32,
+    left: 32,
     minWidth: 360,
     backgroundColor: "rgb(66, 71, 88)",
     color: theme.palette.common.white,
+    paddingTop: 0,
     paddingBottom: 0
-  },
-  sticky: {
-    backgroundColor: "rgb(210, 125, 24)",
-    color: theme.palette.common.white,
-    fontSize: '1rem'
   },
   divider: {
     borderBottom: "1px solid rgba(255, 255, 255, 0.63)"
@@ -22,6 +29,13 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.28)'
     }
+  },
+  playlistFab: {
+    width: 30,
+    height: 30,
+    minHeight: 30,
+    marginLeft: "auto",
+    boxShadow: "none"
   }
 }));
 
@@ -33,14 +47,6 @@ export default function Menu({ videos }) {
       className={classes.root}
       component="nav"
       aria-labelledby="playlist"
-      subheader={
-        <ListSubheader classes={{
-          sticky: classes.sticky
-        }}
-          component="div" id="playlist">
-          Playlist
-        </ListSubheader>
-      }
     > {videos
       ? videos.map((video, index) => {
         return (

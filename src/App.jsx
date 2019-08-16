@@ -15,7 +15,11 @@ const theme = createMuiTheme({
     primary: {
       main: blue[800],
     },
-    secondary: orange
+    secondary: orange,
+    customOrange: {
+      main: '#d27d18',
+      hover: '#d29b5a'
+    },
   },
   status: {
     danger: 'orange',
@@ -25,6 +29,7 @@ const theme = createMuiTheme({
 function App() {
   const [videos, setVideos] = React.useState([]);
   const [selectedVideo, selectVideo] = React.useState(null);
+  const [playlist, togglePlaylist] = useState(false);
 
   useEffect(() => {
     window.gapi.load('client', gapiConfig)
@@ -34,11 +39,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Header setVideos={setVideos} />
+        <Header
+          setVideos={setVideos}
+          playlist={playlist}
+          togglePlaylist={togglePlaylist}
+        />
         <Content
           videos={videos}
           selectVideo={selectVideo}
           selectedVideo={selectedVideo}
+          playlist={playlist}
+          togglePlaylist={togglePlaylist}
         />
       </div>
     </ThemeProvider>

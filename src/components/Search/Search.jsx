@@ -7,7 +7,6 @@ import SearchIcon from '@material-ui/icons/Search';
 const useStyles = makeStyles(theme => ({
   search: {
     display: "flex",
-    width: "70%",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.2),
     '&:hover': {
@@ -22,7 +21,11 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 1, 1, 4),
   },
   button: {
-    backgroundColor: fade(theme.palette.secondary.light, 0.8),
+    backgroundColor: theme.palette.customOrange.main,
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.customOrange.hover
+    }
   },
 }))
 
@@ -38,7 +41,7 @@ export default function Search({ setVideos }) {
     const videos = await searchYoutube(inputValue);
     setVideos(videos.items)
   }
-
+ 
   return (
     <div className={classes.search}>
       <InputBase
@@ -51,6 +54,7 @@ export default function Search({ setVideos }) {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyPress={handleEnter}
       />
+      
       <Button
         variant="contained"
         className={classes.button}

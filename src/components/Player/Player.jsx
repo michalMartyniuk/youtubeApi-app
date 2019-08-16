@@ -13,8 +13,8 @@ export default function Player({ selectedVideo }) {
 
   return <iframe
       id="yt-iframe"
-      width="640"
-      height="360"
+      width="1020"
+      height="560"
       src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
       frameBorder="0">
     </iframe>

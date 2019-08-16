@@ -14,7 +14,9 @@ const styles = {
   }))
 }
 
-export default function Content({ videos, selectVideo, selectedVideo }) {
+export default function Content({
+  videos, selectVideo, selectedVideo, playlist
+}) {
   return (
     <Container classes={styles.container()}>
       <Grid container>
@@ -22,7 +24,10 @@ export default function Content({ videos, selectVideo, selectedVideo }) {
           <Player selectedVideo={selectedVideo} />
         </Grid>
         <Grid item xs={3}>
-          <Menu videos={videos} />
+          {playlist
+            ? <Menu videos={videos} />
+            : null
+          }
         </Grid>
       </Grid>
       <Video videos={videos} selectVideo={selectVideo} />
