@@ -36,7 +36,6 @@ export default function Search({ setVideos }) {
 
   async function handleSearch() {
     const videos = await searchYoutube(inputValue);
-    console.log(videos)
     setVideos(videos.items)
   }
 

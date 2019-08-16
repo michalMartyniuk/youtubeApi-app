@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 
 export default function Header({ setVideos }) {
   return (
-    <AppBar>
+    <AppBar >
       <Toolbar>
         <Grid container alignItems="center" spacing={7} wrap="nowrap" >
           <Grid item xs={3} md={1}>

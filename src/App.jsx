@@ -3,9 +3,12 @@ import { gapiConfig } from './gapi.config';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { orange, blue } from '@material-ui/core/colors';
-import Video from './components/Video/Video';
+import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header/Header';
-import Player from './components/Player';
+import Player from './components/Player/Player';
+import Content from './components/Content';
+import NestedList from './components/List';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,12 +30,16 @@ function App() {
     window.gapi.load('client', gapiConfig)
   })
 
+  console.log(videos)
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <Header setVideos={setVideos} />
-        <Player selected_video={selectedVideo}/>
-        <Video vidoes={videos} selectVideo={selectVideo}/>
+        <Content
+          videos={videos}
+          selectVideo={selectVideo}
+          selectedVideo={selectedVideo}
+        />
       </div>
     </ThemeProvider>
   );
