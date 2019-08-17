@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppBar, Toolbar, Typography, Grid, Button, ButtonGroup } from '@material-ui/core';
 import Search from '../Search/Search';
 import { makeStyles } from '@material-ui/styles';
 import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
+import { StateContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   playlistButton: {
@@ -14,12 +15,19 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-export default function Header({ setVideos, playlist, togglePlaylist }) {
+export default function Header() {
   const classes = useStyles();
+  const [state, setState] = useContext(StateContext);
 
   function handlePlaylistToggle() {
-    togglePlaylist(!playlist)
+    setState(state => ({
+      ...state,
+      playlist: {
+        ...state.playlist,
+        state: !state.playlist.state
+      }
+    }
+    ))
   }
 
   return (
@@ -32,7 +40,7 @@ export default function Header({ setVideos, playlist, togglePlaylist }) {
             </Typography>
           </Grid>
           <Grid item xs={8} >
-            <Search setVideos={setVideos} />
+            <Search />
           </Grid>
         </Grid>
         <Grid item xs={2} >
@@ -49,7 +57,7 @@ export default function Header({ setVideos, playlist, togglePlaylist }) {
               size="small"
               onClick={handlePlaylistToggle}
             >
-              {playlist
+              {state.playlist.state
                 ? <ArrowDropUp />
                 : <ArrowDropDown />
               }

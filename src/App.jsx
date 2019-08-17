@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { gapiConfig } from './gapi.config';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { orange, blue } from '@material-ui/core/colors';
-import { Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header/Header';
-import Player from './components/Player/Player';
 import Content from './components/Content';
-import NestedList from './components/List';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,40 +16,43 @@ const theme = createMuiTheme({
       main: '#d27d18',
       hover: '#d29b5a'
     },
+    customDarkBlue: {
+      main: 'rgb(66, 71, 88)',
+      hover: 'rgb(66, 71, 88)'
+    }
   },
   status: {
     danger: 'orange',
   },
 });
 
-function App() {
-  const [videos, setVideos] = React.useState([]);
-  const [selectedVideo, selectVideo] = React.useState(null);
-  const [playlist, togglePlaylist] = useState(false);
+export const StateContext = createContext();
 
+export default function App() {
+  const [state, setState] = useState({
+    video: {
+      items: [],
+      selected: null
+    },
+    playlist: {
+      items: [],
+      state: false
+    }
+  })
+
+  console.log(state.video.items)
   useEffect(() => {
     window.gapi.load('client', gapiConfig)
   })
 
-  console.log(videos)
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Header
-          setVideos={setVideos}
-          playlist={playlist}
-          togglePlaylist={togglePlaylist}
-        />
-        <Content
-          videos={videos}
-          selectVideo={selectVideo}
-          selectedVideo={selectedVideo}
-          playlist={playlist}
-          togglePlaylist={togglePlaylist}
-        />
-      </div>
+      <StateContext.Provider value={[state, setState]}>
+        <div className="App">
+          <Header />
+          <Content />
+        </div>
+      </StateContext.Provider>
     </ThemeProvider>
   );
 }
-
-export default App;

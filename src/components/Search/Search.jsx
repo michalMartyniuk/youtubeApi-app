@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { searchYoutube } from './functions';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { InputBase, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { StateContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -29,8 +30,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Search({ setVideos }) {
+export default function Search() {
   const classes = useStyles();
+  const [state, setState] = useContext(StateContext);
   const [inputValue, setInputValue] = useState("");
 
   function handleEnter(e) {
@@ -39,7 +41,10 @@ export default function Search({ setVideos }) {
 
   async function handleSearch() {
     const videos = await searchYoutube(inputValue);
-    setVideos(videos.items)
+    setState(state => ({
+      ...state,
+      video: {...state.video, items: videos.items}
+    }))
   }
  
   return (

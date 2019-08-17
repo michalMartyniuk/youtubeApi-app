@@ -1,9 +1,10 @@
-import React from 'react';
-import { Grid, Container, Box } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Video from './Video/Video';
-import Menu from './Menu/Menu';
+import Playlist from './Playlist/Playlist';
 import Player from './Player/Player';
+import { StateContext } from '../App';
 
 const styles = {
   container: makeStyles(theme => ({
@@ -14,23 +15,19 @@ const styles = {
   }))
 }
 
-export default function Content({
-  videos, selectVideo, selectedVideo, playlist
-}) {
+export default function Content() {
+  const [state, setState] = useContext(StateContext);
   return (
     <Container classes={styles.container()}>
       <Grid container>
         <Grid item xs={9}>
-          <Player selectedVideo={selectedVideo} />
+          <Player />
         </Grid>
         <Grid item xs={3}>
-          {playlist
-            ? <Menu videos={videos} />
-            : null
-          }
+          {state.playlist.state ? <Playlist /> : null}
         </Grid>
       </Grid>
-      <Video videos={videos} selectVideo={selectVideo} />
+      <Video />
     </Container >
   )
 }

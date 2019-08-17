@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   List,
-  ListSubheader,
   ListItem,
   ListItemText,
-  Fab
 } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
 import clsx from 'clsx';
-import { flexbox } from '@material-ui/system';
+import { StateContext } from '../App';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,25 +36,26 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Menu({ videos }) {
+export default function Playlist() {
   const classes = useStyles();
+  const [state, setState] = useContext(StateContext);
 
   return (
     <List
       className={classes.root}
       component="nav"
       aria-labelledby="playlist"
-    > {videos
-      ? videos.map((video, index) => {
+    > {state.playlist.content
+      ? state.playlist.content.map((item, index) => {
         return (
           <ListItem
             button
             divider
             classes={{
-              divider: clsx({ [classes.divider]: index !== videos.length - 1, }),
+              divider: clsx({ [classes.divider]: index !== state.playlist.content.length - 1, }),
               button: classes.itemButton
             }} >
-            <ListItemText primary={video.snippet.title} />
+            <ListItemText primary={item.snippet.title} />
           </ListItem>
         )
       })

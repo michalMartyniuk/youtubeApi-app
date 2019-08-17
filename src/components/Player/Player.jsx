@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Player({ selectedVideo }) {
+export default function Player() {
   const classes = useStyles();
 
   return <iframe
