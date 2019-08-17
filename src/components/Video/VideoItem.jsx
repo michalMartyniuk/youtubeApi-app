@@ -8,7 +8,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import { Add, ExpandMore, ExpandLess } from '@material-ui/icons';
 import { CardContent } from '@material-ui/core';
-import { StateContext } from '../App';
+import { StateContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   card: {

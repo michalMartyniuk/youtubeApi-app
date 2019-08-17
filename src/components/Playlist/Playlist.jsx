@@ -6,7 +6,7 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import { StateContext } from '../App';
+import { StateContext } from '../../App';
 
 const useStyles = makeStyles(theme => ({
   root: {

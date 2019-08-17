@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import VideoItem from './VideoItem';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { StateContext } from '../App';
+import { StateContext } from '../../App';
 
 const styles = {
   grid: makeStyles(theme => ({
