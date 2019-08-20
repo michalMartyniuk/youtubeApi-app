@@ -13,14 +13,13 @@ const styles = {
 }
 
 export default function Video() {
-  const [state, setState] = useContext(StateContext);
+  const [state, dispatch] = useContext(StateContext);
   return (
     <Grid container spacing={3} classes={styles.grid()}>
       {state.video.items
         ? state.video.items.map(video =>
-          <Grid item>
+          <Grid item key={video.etag}>
             <VideoItem
-              key={video.etag}
               video={video}
             />
           </Grid>)

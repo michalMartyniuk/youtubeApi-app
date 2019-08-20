@@ -16,7 +16,7 @@ const styles = {
 }
 
 export default function Content() {
-  const [state, setState] = useContext(StateContext);
+  const [state, dispatch] = useContext(StateContext);
   return (
     <Container classes={styles.container()}>
       <Grid container>
@@ -24,7 +24,7 @@ export default function Content() {
           <Player />
         </Grid>
         <Grid item xs={3}>
-          {state.playlist.state ? <Playlist /> : null}
+          {state.playlist.toggleState ? <Playlist /> : null}
         </Grid>
       </Grid>
       <Video />

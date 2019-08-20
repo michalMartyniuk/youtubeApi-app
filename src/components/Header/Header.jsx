@@ -1,35 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AppBar, Toolbar, Typography, Grid, Button, ButtonGroup } from '@material-ui/core';
 import Search from '../Search/Search';
-import { makeStyles } from '@material-ui/styles';
 import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
 import { StateContext } from '../../App';
-
-const useStyles = makeStyles(theme => ({
-  playlistButton: {
-    backgroundColor: theme.palette.customOrange.main,
-    color: theme.palette.common.white,
-    '&:hover': {
-      backgroundColor: theme.palette.customOrange.hover,
-    }
-  }
-}))
+import { useStyles } from './styles';
 
 export default function Header() {
   const classes = useStyles();
-  const [state, setState] = useContext(StateContext);
-
-  function handlePlaylistToggle() {
-    setState(state => ({
-      ...state,
-      playlist: {
-        ...state.playlist,
-        state: !state.playlist.state
-      }
-    }
-    ))
-  }
-
+  const [state, dispatch] = useContext(StateContext);
   return (
     <AppBar >
       <Toolbar>
@@ -47,7 +25,7 @@ export default function Header() {
           <ButtonGroup variant="contained" color="primary" aria-label="split button">
             <Button
               className={classes.playlistButton}
-              onClick={handlePlaylistToggle}
+              onClick={() => dispatch({ type: 'TOGGLE' })}
             >
               Playlist
             </Button>
@@ -55,9 +33,9 @@ export default function Header() {
               className={classes.playlistButton}
               variant="contained"
               size="small"
-              onClick={handlePlaylistToggle}
+              onClick={() => dispatch({ type: 'TOGGLE' })}
             >
-              {state.playlist.state
+              {state.playlist.toggleState
                 ? <ArrowDropUp />
                 : <ArrowDropDown />
               }

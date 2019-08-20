@@ -1,53 +1,37 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useEffect, useReducer, createContext } from 'react';
 import { gapiConfig } from './gapi.config';
 import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { orange, blue } from '@material-ui/core/colors';
 import Header from './components/Header/Header';
 import Content from './components/Content';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: blue[800],
-    },
-    secondary: orange,
-    customOrange: {
-      main: '#d27d18',
-      hover: '#d29b5a'
-    },
-    customDarkBlue: {
-      main: 'rgb(66, 71, 88)',
-      hover: 'rgb(66, 71, 88)'
-    }
-  },
-  status: {
-    danger: 'orange',
-  },
-});
+import { rootReducer } from './components/store/reducers/rootReducer';
+import { theme } from './theme';
 
 export const StateContext = createContext();
 
 export default function App() {
-  const [state, setState] = useState({
+  const initialState = {
+    global: {
+      snackbar: true
+    },
     video: {
       items: [],
-      selected: null
+      selected: null,
     },
     playlist: {
+      msg: "Example msg",
       items: [],
-      state: false
+      toggleState: true,
     }
-  })
+  }
+  const [state, dispatch] = useReducer(rootReducer, initialState)
 
-  console.log(state.video.items)
   useEffect(() => {
     window.gapi.load('client', gapiConfig)
   })
 
   return (
     <ThemeProvider theme={theme}>
-      <StateContext.Provider value={[state, setState]}>
+      <StateContext.Provider value={[state, dispatch]}>
         <div className="App">
           <Header />
           <Content />
