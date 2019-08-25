@@ -35,7 +35,7 @@ export default function Header() {
               size="small"
               onClick={() => dispatch({ type: 'TOGGLE' })}
             >
-              {state.playlist.toggleState
+              {state.ui.playlist_state
                 ? <ArrowDropUp />
                 : <ArrowDropDown />
               }

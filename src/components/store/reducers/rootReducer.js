@@ -1,10 +1,10 @@
-import { globalReducer } from './globalReducer';
+import { uiReducer } from './uiReducer';
 import { playlistReducer } from './playlistReducer';
 import { videoReducer } from './videoReducer';
 
-export const rootReducer = ({ global, playlist, video }, action) => {
+export const rootReducer = ({ ui, playlist, video }, action) => {
   return {
-    global: globalReducer(global, action),
+    ui: uiReducer(ui, action),
     playlist: playlistReducer(playlist, action),
     video: videoReducer(video, action)
   }

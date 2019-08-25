@@ -1,12 +1,11 @@
-// import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-// export const useStyles = makeStyles(theme => ({
-//   playlistButton: {
-//     backgroundColor: theme.palette.customOrange.main,
-//     color: theme.palette.common.white,
-//     '&:hover': {
-//       backgroundColor: theme.palette.customOrange.hover,
-//     }
-//   }
-// }))
-console.log("siema")
+export const useStyles = makeStyles(theme => ({
+  playlistButton: {
+    backgroundColor: theme.palette.customOrange.main,
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.customOrange.hover,
+    }
+  }
+}))

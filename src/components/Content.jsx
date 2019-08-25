@@ -24,7 +24,7 @@ export default function Content() {
           <Player />
         </Grid>
         <Grid item xs={3}>
-          {state.playlist.toggleState ? <Playlist /> : null}
+          {state.ui.playlist_state ? <Playlist /> : null}
         </Grid>
       </Grid>
       <Video />

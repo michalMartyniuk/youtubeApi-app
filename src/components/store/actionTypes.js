@@ -1,6 +1,7 @@
 export const actionTypes = {
-  global: {
-    NOTIFY: 'NOTIFY'
+  ui: {
+    SET_NOTIFICATION: 'SET_NOTIFICATION',
+    SET_PLAYLIST: 'SET_PLAYLIST'
   },
   video: {
     SET: 'SET',

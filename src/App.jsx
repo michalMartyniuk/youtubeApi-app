@@ -3,6 +3,7 @@ import { gapiConfig } from './gapi.config';
 import { ThemeProvider } from '@material-ui/styles';
 import Header from './components/Header/Header';
 import Content from './components/Content';
+import Notification from './components/Notification';
 import { rootReducer } from './components/store/reducers/rootReducer';
 import { theme } from './theme';
 
@@ -10,17 +11,20 @@ export const StateContext = createContext();
 
 export default function App() {
   const initialState = {
-    global: {
-      snackbar: true
+    ui: {
+      notification: {
+        isActive: false,
+        variant: "success | info | warning | error",
+        message: "message"
+      },
+      playlist_state: true,
     },
     video: {
       items: [],
       selected: null,
     },
     playlist: {
-      msg: "Example msg",
       items: [],
-      toggleState: true,
     }
   }
   const [state, dispatch] = useReducer(rootReducer, initialState)
@@ -35,6 +39,11 @@ export default function App() {
         <div className="App">
           <Header />
           <Content />
+          <Notification
+            active={state.ui.notification.isActive}
+            variant={state.ui.notification.variant}
+            message={state.ui.notification.message}
+          />
         </div>
       </StateContext.Provider>
     </ThemeProvider>

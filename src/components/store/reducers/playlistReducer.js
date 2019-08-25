@@ -4,8 +4,6 @@ export const playlistReducer = (state, action) => {
   const { playlist } = actionTypes
 
   switch (action.type) {
-    case "test":
-      return {...state, msg: "Test msg"}
     case playlist.ADD:
       if (state.items
         .filter(item => item === action.video)
@@ -19,11 +17,7 @@ export const playlistReducer = (state, action) => {
           action.video
         ]
       }
-    case playlist.TOGGLE:
-      return {
-        ...state,
-        toggleState: !state.toggleState
-      }
+
     default:
       return state
   }
