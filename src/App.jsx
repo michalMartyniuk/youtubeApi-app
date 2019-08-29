@@ -3,7 +3,12 @@ import { gapiConfig } from './gapi.config';
 import { ThemeProvider } from '@material-ui/styles';
 import Header from './components/Header/Header';
 import Content from './components/Content';
+<<<<<<< HEAD
 import { rootReducer } from './store/reducers/rootReducer';
+=======
+import Notification from './components/Notification';
+import { rootReducer } from './components/store/reducers/rootReducer';
+>>>>>>> 2e247d5260a46c9b83770313647e0fabb2c2ae9d
 import { theme } from './theme';
 import { searchYT } from './store/actions';
 import Snackbar from './components/Notification/Notification';
@@ -15,16 +20,24 @@ export const StateContext = createContext();
 export default function App () {
   const initialState = {
     ui: {
+<<<<<<< HEAD
       snackbar_state: true,
       playlist_state: true,
       dialog_state: true
+=======
+      notification: {
+        isActive: false,
+        variant: "success | info | warning | error",
+        message: "message"
+      },
+      playlist_state: true,
+>>>>>>> 2e247d5260a46c9b83770313647e0fabb2c2ae9d
     },
     video: {
       items: [],
       selected: null,
     },
     playlist: {
-      msg: "Example msg",
       items: [],
     }
   }
@@ -60,10 +73,18 @@ export default function App () {
           {/* <CustomDialog title="siema" content={dialogContent}/> */}
           {/* <Header /> */}
           <Content />
+<<<<<<< HEAD
           {/* <Snackbar
             isOpen={ state.ui.snackbar_state }
             message="Siema co tam ?"
           /> */}
+=======
+          <Notification
+            active={state.ui.notification.isActive}
+            variant={state.ui.notification.variant}
+            message={state.ui.notification.message}
+          />
+>>>>>>> 2e247d5260a46c9b83770313647e0fabb2c2ae9d
         </div>
       </StateContext.Provider>
     </ThemeProvider>

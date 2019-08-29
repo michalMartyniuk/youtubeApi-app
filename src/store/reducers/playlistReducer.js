@@ -4,8 +4,6 @@ export const playlistReducer = (state, action) => {
   const { playlist } = actionTypes
 
   switch (action.type) {
-    case "test":
-      return {...state, msg: "Test msg"}
     case playlist.ADD:
       if (state.items
         .filter(item => item === action.video)
@@ -19,6 +17,10 @@ export const playlistReducer = (state, action) => {
           action.video
         ]
       }
+<<<<<<< HEAD:src/store/reducers/playlistReducer.js
+=======
+
+>>>>>>> 2e247d5260a46c9b83770313647e0fabb2c2ae9d:src/components/store/reducers/playlistReducer.js
     default:
       return state
   }
