@@ -19,11 +19,6 @@ export const playlistReducer = (state, action) => {
           action.video
         ]
       }
-    case playlist.TOGGLE:
-      return {
-        ...state,
-        toggleState: !state.toggleState
-      }
     default:
       return state
   }

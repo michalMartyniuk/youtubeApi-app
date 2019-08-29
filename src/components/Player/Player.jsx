@@ -8,14 +8,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Player() {
+export default function Player () {
   const classes = useStyles();
-
+  if (window.playerReady) {
+    // console.log(window.player)
+    console.log(window.player.b.b.events.onReady())
+  }
   return <iframe
-      id="yt-iframe"
-      width="1020"
-      height="560"
-      src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
-      frameBorder="0">
-    </iframe>
+    id="yt-iframe"
+    width="1020"
+    height="560"
+    src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
+    frameBorder="0">
+  </iframe>
 }

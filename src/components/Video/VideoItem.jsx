@@ -7,43 +7,50 @@ import IconButton from '@material-ui/core/IconButton';
 import { Add, ExpandMore, ExpandLess } from '@material-ui/icons';
 import { CardContent } from '@material-ui/core';
 import { StateContext } from '../../App';
-import { add_to_playlist, video_select } from '../store/actions';
-import {useStyles, styles} from './styles';
+import {
+  add_to_playlist,
+  video_select,
+  set_notification_state
+} from '../../store/actions';
+import { useStyles, styles } from './styles';
 
-export default function VideoItem({ video }) {
+export default function VideoItem ( { video } ) {
   const classes = useStyles();
-  const [headerExpand, setHeaderExpand] = useState(false);
-  const [state, dispatch] = useContext(StateContext);
+  const [ headerExpand, setHeaderExpand ] = useState( false );
+  const [ state, dispatch ] = useContext( StateContext );
 
   return (
-    <Card className={classes.card}>
+    <Card className={ classes.card }>
       <CardMedia
-        className={classes.media}
-        image={video.snippet.thumbnails.medium.url}
-        title={video.snippet.title}
-        onClick={() => video_select(video, dispatch)}
+        className={ classes.media }
+        image={ video.snippet.thumbnails.medium.url }
+        title={ video.snippet.title }
+        onClick={ () => video_select( video, dispatch ) }
       />
       <CardHeader
-        classes={styles.header()}
-        title={video.snippet.title}
+        classes={ styles.header() }
+        title={ video.snippet.title }
       />
-      {headerExpand
+      { headerExpand
         ? <CardContent> <h5>Content</h5> </CardContent>
         : null
       }
-      <CardActions className={classes.cardActions}>
+      <CardActions className={ classes.cardActions }>
         <IconButton
-          className={classes.actionIcon}
-          onClick={() => add_to_playlist(video, dispatch)}
+          className={ classes.actionIcon }
+          onClick={ () => {
+            add_to_playlist( video, dispatch )
+            set_notification_state( true, dispatch )
+          } }
         >
           <Add />
         </IconButton>
         <IconButton
-          className={classes.actionIcon}
+          className={ classes.actionIcon }
           aria-label="expand header"
-          onClick={() => setHeaderExpand(!headerExpand)}
+          onClick={ () => setHeaderExpand( !headerExpand ) }
         >
-          {headerExpand
+          { headerExpand
             ? <ExpandLess />
             : <ExpandMore />
           }

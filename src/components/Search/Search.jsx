@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { InputBase, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { StateContext } from '../../App';
-import { searchYT } from '../store/actions';
+import { searchYT } from '../../store/actions';
 import { useStyles } from './styles';
 
 export default function Search() {

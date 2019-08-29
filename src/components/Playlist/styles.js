@@ -5,7 +5,7 @@ export const useStyles = makeStyles(theme => ({
     position: "fixed",
     right: 0,
     top: 64,
-    minWidth: 360,
+    minWidth: 630,
     backgroundColor: "rgb(66, 71, 88)",
     color: theme.palette.common.white,
     paddingTop: 0,

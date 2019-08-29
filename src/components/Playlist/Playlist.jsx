@@ -18,6 +18,10 @@ export default function Playlist() {
       aria-labelledby="playlist"
     > {state.playlist.items
       ? state.playlist.items.map((item, index) => {
+        let { title } = item.snippet
+        if (title.length > 40) {
+          title = title.slice(0,40) + "..."
+        }
         return (
           <ListItem
             button
@@ -27,7 +31,7 @@ export default function Playlist() {
               divider: clsx({ [classes.divider]: index !== state.playlist.items.length - 1, }),
               button: classes.itemButton
             }} >
-            <ListItemText primary={item.snippet.title} />
+            <ListItemText primary={title} />
           </ListItem>
         )
       })

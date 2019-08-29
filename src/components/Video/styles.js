@@ -1,35 +1,52 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles( theme => ( {
   card: {
     maxWidth: 250,
   },
   media: {
-    height: 0,
+    height: 24,
+    width: 250,
     paddingTop: '56.25%', // 16:9
     cursor: "pointer"
   },
   cardActions: {
-    marginTop: theme.spacing(1),
     backgroundColor: theme.palette.customDarkBlue.main,
     '&:hover': {
       backgroundColor: theme.palette.customDarkBlue.hover
-    }
+    },
+    padding: 0,
   },
   actionIcon: {
-    color: theme.palette.common.white
+    borderRadius: 0,
+    margin: 0,
+    color: theme.palette.common.white,
+    "&:hover": {
+      backgroundColor: "#d27d18"
+    }
   }
-}));
+} ) );
+
 
 export const styles = {
-  moreIcon: makeStyles(theme => ({
+  moreIcon: makeStyles( theme => ( {
     root: {
-      padding: theme.spacing(1),
+      padding: theme.spacing( 1 ),
+      margin: 0,
     }
-  })),
 
-  header: makeStyles(theme => ({
-    root: { paddingBottom: 0 },
+  } ) ),
+
+  header: makeStyles( theme => ( {
+    root: {
+      boxSizing: "border- box",
+      width: "auto",
+      height: 50,
+      alignItems: "center",
+      justifyContent: "center",
+      display: "flex",
+      padding: 16,
+    },
     title: { ...theme.typography.subtitle2, fontSize: '1rem' },
-  }))
+  } ) )
 }
