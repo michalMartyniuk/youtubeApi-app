@@ -8,7 +8,7 @@ const router = express.Router();
 app.use(cors());
 
 router.get('/data', (req, res) => {
-  res.send("Siema")
+  res.json("Siema")
 });
 
 app.use('/api', router);
