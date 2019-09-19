@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -50,7 +50,8 @@ export default function VideoItem ( { video } ) {
           aria-label="expand header"
           onClick={ () => setHeaderExpand( !headerExpand ) }
         >
-          { headerExpand
+          { 
+            headerExpand
             ? <ExpandLess />
             : <ExpandMore />
           }

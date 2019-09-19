@@ -31,7 +31,7 @@ export default function App () {
 
   useEffect(() => {
     const ytConfig = () => gapiConfig(() => {
-      searchYT("moby", dispatch)
+      // searchYT("moby", dispatch)
     })
     window.gapi.load('client', ytConfig)
   }, [window.gapi.load])
@@ -57,12 +57,12 @@ export default function App () {
       <StateContext.Provider value={[state, dispatch]}>
         <div className="App">
           {/* <CustomDialog title="siema" content={dialogContent}/> */}
-          {/* <Header /> */}
+          <Header />
           <Content />
-          {/* <Snackbar
+          <Snackbar
             isOpen={ state.ui.snackbar_state }
             message="Siema co tam ?"
-          /> */}
+          />
         </div>
       </StateContext.Provider>
     </ThemeProvider>
