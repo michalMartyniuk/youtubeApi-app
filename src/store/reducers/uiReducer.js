@@ -18,6 +18,11 @@ export const uiReducer = ( state, action ) => {
         ...state,
         dialog_state: action.dialog_state
       }
+    case ui.SET_PLAYER_STATE:
+      return {
+        ...state,
+        player_state: action.player_state
+      }
     default:
       return state
   }

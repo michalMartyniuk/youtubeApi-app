@@ -21,7 +21,7 @@ export default function Content() {
     <Container classes={styles.container()}>
       <Grid container>
         <Grid item xs={9}>
-          <Player />
+          {state.ui.player_state ? <Player /> : null}
         </Grid>
         <Grid item xs={3}>
           {state.ui.playlist_state ? <Playlist /> : null}

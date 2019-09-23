@@ -8,7 +8,7 @@ import { useStyles } from './styles';
 export default function Search() {
   const classes = useStyles();
   const [state, dispatch] = useContext(StateContext);
-  const [inputValue, setInputValue] = useState("nirvana");
+  const [inputValue, setInputValue] = useState();
 
   function handleEnter(e) {
     if (e.key === "Enter") searchYT(inputValue, dispatch)

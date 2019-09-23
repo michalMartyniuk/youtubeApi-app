@@ -1,24 +1,24 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
+import YouTube from 'react-youtube';
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    marginTop: theme.spacing(12)
+export default function Player() {
+  const opts = {
+    height: '500',
+    width: '800',
+    playerVars: { // https://developers.google.com/youtube/player_parameters
+      autoplay: 1
+    }
+  };
+  function onReady(event) {
+    console.log(event)
+    event.target.stopVideo();
   }
-}))
-
-export default function Player () {
-  const classes = useStyles();
-  if (window.playerReady) {
-    // console.log(window.player)
-    console.log(window.player.b.b.events.onReady())
-  }
-  return <iframe
-    id="yt-iframe"
-    width="1020"
-    height="560"
-    src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
-    frameBorder="0">
-  </iframe>
+  return (
+    <YouTube
+      videoId="2g811Eo7K8U"
+      opts={opts}
+      onReady={onReady}
+    />
+  );
 }

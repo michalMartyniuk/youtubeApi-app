@@ -40,3 +40,10 @@ export const set_dialog_state = (dialog_state, dispatch) => {
     dialog_state
   })
 }
+
+export const set_player_state = (player_state, dispatch) => {
+  dispatch({
+    type: types.ui.SET_PLAYER_STATE,
+    player_state
+  })
+}
