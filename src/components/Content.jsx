@@ -6,28 +6,24 @@ import Playlist from './Playlist/Playlist';
 import Player from './Player/Player';
 import { StateContext } from '../App';
 
-const styles = {
-  container: makeStyles(theme => ({
-    root: {
-      marginTop: theme.spacing(12),
-    },
-    maxWidthLg: { maxWidth: "none" }
-  }))
-}
+const styles = makeStyles(theme => ({
+  container: {
+    marginTop: theme.spacing(12),
+  },
+  playerRoot: {
+    marginTop: theme.spacing(12),
+  },
+  maxWidthLg: { maxWidth: "none" }
+}))
+
 
 export default function Content() {
   const [state, dispatch] = useContext(StateContext);
+  const classes = styles();
   return (
-    <Container classes={styles.container()}>
-      <Grid container>
-        <Grid item xs={9}>
-          {state.ui.player_state ? <Player /> : null}
-        </Grid>
-        <Grid item xs={3}>
-          {state.ui.playlist_state ? <Playlist /> : null}
-        </Grid>
-      </Grid>
+    <div className={classes.playerRoot}>
+      {state.ui.player_state && state.video.selected ? <Player /> : null}
       <Video />
-    </Container >
+    </div>
   )
 }

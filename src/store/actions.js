@@ -1,13 +1,23 @@
 import { actionTypes } from './actionTypes';
 const types = actionTypes;
 
-export async function searchYT(query, dispatch) {
-  const { result } = await window.gapi.client.youtube.search.list({
-    "part": "id, snippet",
-    "q": query
-  });
-  const videos = result.items;
-  dispatch({ type: 'SET', videos })
+export async function searchYT(query, dispatch, token = null, callback=null) {
+  const config = {
+    part: "id, snippet",
+    q: query,
+    type: ["video"],
+    maxResults: 20,
+    order: "viewCount"
+  }
+  if (token) config.pageToken = token
+  const { result } = await window.gapi.client.youtube.search.list(config);
+  const results = result
+  dispatch({ type: types.video.SET_VIDEOS, query, results })
+  if (callback) callback()
+}
+
+export const set_search_value = (value, dispatch) => {
+  dispatch({ type: types.video.SET_SEARCH_VALUE, value })
 }
 
 export const add_to_playlist = (video, dispatch) => {
@@ -15,12 +25,7 @@ export const add_to_playlist = (video, dispatch) => {
   dispatch({ type: types.ui.NOTIFY, messsage: "Video added to playlist" })
 }
 
-export const video_select = (video, dispatch) => {
-  dispatch({
-    type: types.video.SELECT,
-    video
-  })
-}
+
 export const set_notification_state = (snackbar_state, dispatch) => {
   dispatch({
     type: types.ui.SET_NOTIFICATION_STATE,
@@ -45,5 +50,37 @@ export const set_player_state = (player_state, dispatch) => {
   dispatch({
     type: types.ui.SET_PLAYER_STATE,
     player_state
+  })
+}
+export const video_get_player = (player, dispatch) => {
+  dispatch({
+    type: types.video.GET_PLAYER,
+    player
+  })
+}
+export const video_select = (video, dispatch) => {
+  dispatch({
+    type: types.video.SELECT,
+    video
+  })
+}
+export const video_pause = (dispatch) => {
+  dispatch({
+    type: types.video.PAUSE,
+  })
+}
+export const video_play = (dispatch) => {
+  dispatch({
+    type: types.video.PLAY,
+  })
+}
+export const video_previous = (dispatch) => {
+  dispatch({
+    type: types.video.PREVIOUS,
+  })
+}
+export const video_next = (dispatch) => {
+  dispatch({
+    type: types.video.NEXT,
   })
 }

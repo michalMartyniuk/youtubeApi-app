@@ -6,7 +6,10 @@ export const actionTypes = {
     SET_PLAYER_STATE: 'SET_PLAYER_STATE'
   },
   video: {
-    SET: 'SET',
+    SET_SEARCH_VALUE: 'SET_SEARCH_VALUE',
+    NEXT_PAGE: 'NEXT_PAGE',
+    GET_PLAYER: 'GET_PLAYER',
+    SET_VIDEOS: 'SET_VIDEOS',
     SELECT: 'SELECT',
     PAUSE: 'PAUSE',
     PLAY: 'PLAY',
