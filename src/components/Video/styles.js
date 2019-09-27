@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles( theme => ( {
+export const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 250,
   },
@@ -18,6 +18,7 @@ export const useStyles = makeStyles( theme => ( {
     padding: 0,
   },
   actionIcon: {
+    fontSize: "1.5rem",
     borderRadius: 0,
     margin: 0,
     color: theme.palette.common.white,
@@ -25,19 +26,19 @@ export const useStyles = makeStyles( theme => ( {
       backgroundColor: "#d27d18"
     }
   }
-} ) );
+}));
 
 
 export const styles = {
-  moreIcon: makeStyles( theme => ( {
+  moreIcon: makeStyles(theme => ({
     root: {
-      padding: theme.spacing( 1 ),
+      padding: theme.spacing(1),
       margin: 0,
     }
 
-  } ) ),
+  })),
 
-  header: makeStyles( theme => ( {
+  header: makeStyles(theme => ({
     root: {
       boxSizing: "border- box",
       width: "auto",
@@ -47,6 +48,8 @@ export const styles = {
       display: "flex",
       padding: 16,
     },
-    title: { ...theme.typography.subtitle2, fontSize: '1rem' },
-  } ) )
+    title: {
+      ...theme.typography.h5,
+    },
+  }))
 }

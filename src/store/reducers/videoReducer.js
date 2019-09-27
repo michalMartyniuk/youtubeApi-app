@@ -44,8 +44,6 @@ export const videoReducer = (state, action) => {
         actions: {
           pause: true,
           play: false,
-          previous: false,
-          next: false
         }
       }
     case video.PLAY:
@@ -54,29 +52,37 @@ export const videoReducer = (state, action) => {
         actions: {
           pause: false,
           play: true,
-          previous: false,
-          next: false
         }
       }
     case video.PREVIOUS:
+      let previousVideo = action.playlist.filter((video, index, arr) => {
+         if(arr[index + 1] === action.selectedVideo) {
+           return video
+         }
+      })
+      if (previousVideo.length !== 1) {
+        previousVideo = action.playlist[0]
+      } else {
+        previousVideo = previousVideo[0]
+      }
       return {
         ...state,
-        actions: {
-          pause: false,
-          play: false,
-          previous: true,
-          next: false
-        }
+        selected: previousVideo
       }
     case video.NEXT:
+      let nextVideo = action.playlist.filter((video, index, arr) => {
+         if(arr[index - 1] === action.selectedVideo) {
+           return video
+         }
+      })
+      if (nextVideo.length !== 1) {
+        nextVideo = action.playlist[0]
+      } else {
+        nextVideo = nextVideo[0]
+      }
       return {
         ...state,
-        actions: {
-          pause: false,
-          play: false,
-          previous: false,
-          next: true
-        }
+        selected: nextVideo
       }
     default:
       return state

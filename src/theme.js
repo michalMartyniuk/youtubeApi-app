@@ -2,6 +2,19 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { orange, blue, grey } from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
+  typography: {
+    htmlFontSize: 10,
+    h1: {
+      fontSize: "3.5rem"
+    },
+    h4: {
+      fontSize: "1.8rem"
+    },
+    h5: {
+      fontSize: "1.7rem",
+      fontWeight: 500
+    }
+  },
   palette: {
     primary: {
       main: grey[900],

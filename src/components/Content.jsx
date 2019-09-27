@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Video from './Video/Video';
-import Playlist from './Playlist/Playlist';
 import Player from './Player/Player';
 import { StateContext } from '../App';
 

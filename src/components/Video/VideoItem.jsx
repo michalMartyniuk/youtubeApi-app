@@ -4,7 +4,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import { Add, ExpandMore, ExpandLess, PlayArrow, Pause } from '@material-ui/icons';
+import { Add, ExpandMore, ExpandLess } from '@material-ui/icons';
 import { CardContent } from '@material-ui/core';
 import { StateContext } from '../../App';
 import {
@@ -12,7 +12,6 @@ import {
   video_select,
   video_play,
   set_notification_state,
-  video_pause
 } from '../../store/actions';
 import { useStyles, styles } from './styles';
 
@@ -29,12 +28,13 @@ export default function VideoItem({ video }) {
         title={video.snippet.title}
         onClick={() => {
           video_select(video, dispatch)
-          video_play(dispatch)
         }}
       />
       <CardHeader
         classes={styles.header()}
-        title={video.snippet.title}
+        title={video.snippet.title.length > 40
+          ? video.snippet.title.slice(0, 40) + "..."
+          : video.snippet.title}
       />
       {headerExpand
         ? <CardContent> <h5>Content</h5> </CardContent>

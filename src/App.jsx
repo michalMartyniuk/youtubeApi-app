@@ -8,6 +8,7 @@ import { gapiConfig } from './gapi.config';
 import { searchYT } from './store/actions';
 import { scrollEvent } from './scrollFunction';
 import Snackbar from './components/Notification/Notification';
+import Playlist from './components/Playlist/Playlist';
 
 export const StateContext = createContext();
 
@@ -58,6 +59,7 @@ export default function App() {
             isOpen={state.ui.snackbar_state}
             message="Siema co tam ?"
           />
+          {state.ui.playlist_state ? <Playlist /> : null }
         </div>
       </StateContext.Provider>
     </ThemeProvider>

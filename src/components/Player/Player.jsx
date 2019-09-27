@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import YouTube from 'react-youtube';
-import { video_get_player, video_play, video_pause } from '../../store/actions';
+import { video_get_player } from '../../store/actions';
 import { StateContext } from '../../App';
+import { actionTypes } from '../../store/actionTypes';
 
 const styles = makeStyles(theme => ({
   player: {
@@ -23,27 +24,27 @@ export default function Player() {
   function onReady(event) {
     video_get_player(event.target, dispatch);
   }
-  const { actions, player } = state.video
-  const action = Object.keys(actions).filter(action => actions[action] === true)[0]
-  if (player) {
-    switch (action) {
-      case "play":
-        player.playVideo()
-        break;
-      case "pause":
-        player.pauseVideo()
-    }
-  }
+  // const { actions, player } = state.video
+  // const action = Object.keys(actions).filter(action => actions[action] === true)[0]
+  // if (player) {
+  //   switch (action) {
+  //     case "play":
+  //       player.playVideo()
+  //       break;
+  //     case "pause":
+  //       player.pauseVideo()
+  //   }
+  // }
   function stateChangeHandler({ data }) {
     switch (data) {
       case 1:
         if (state.video.actions.play !== true) {
-          video_play(dispatch)
+          dispatch({ type: actionTypes.video.PLAY })
         }
         break
       case 2:
         if (state.video.actions.pause !== true) {
-          video_pause(dispatch)
+          dispatch({ type: actionTypes.video.PAUSE })
         }
         break
       default:

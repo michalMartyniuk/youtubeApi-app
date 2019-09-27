@@ -9,11 +9,11 @@ export default function Header() {
   return (
     <AppBar >
       <Toolbar>
-        <Typography variant="h6">
+        <Typography variant="h1">
           YoutubeApp
         </Typography>
         <Search />
-        { state.video.selected ? <AppBarPlayer /> : null }
+        <AppBarPlayer />
       </Toolbar>
     </AppBar >
   )

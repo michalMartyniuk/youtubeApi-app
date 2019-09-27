@@ -25,6 +25,9 @@ export const add_to_playlist = (video, dispatch) => {
   dispatch({ type: types.ui.NOTIFY, messsage: "Video added to playlist" })
 }
 
+export const remove_from_playlist = (video, dispatch) => {
+  dispatch({ type: types.playlist.REMOVE, video })
+}
 
 export const set_notification_state = (snackbar_state, dispatch) => {
   dispatch({
@@ -64,23 +67,29 @@ export const video_select = (video, dispatch) => {
     video
   })
 }
-export const video_pause = (dispatch) => {
+export const video_pause = (player, dispatch) => {
+  player.pauseVideo()
   dispatch({
     type: types.video.PAUSE,
   })
 }
-export const video_play = (dispatch) => {
+export const video_play = (player, dispatch) => {
+  player.playVideo()
   dispatch({
     type: types.video.PLAY,
   })
 }
-export const video_previous = (dispatch) => {
+export const video_previous = (selectedVideo, playlist, dispatch) => {
   dispatch({
     type: types.video.PREVIOUS,
+    selectedVideo,
+    playlist
   })
 }
-export const video_next = (dispatch) => {
+export const video_next = (selectedVideo, playlist, dispatch) => {
   dispatch({
     type: types.video.NEXT,
+    selectedVideo,
+    playlist
   })
 }

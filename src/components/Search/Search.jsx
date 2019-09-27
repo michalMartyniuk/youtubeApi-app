@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 1, 1, 4),
   },
   button: {
+    fontSize: "1.7rem",
     backgroundColor: theme.palette.customOrange.main,
     color: theme.palette.common.white,
     '&:hover': {
