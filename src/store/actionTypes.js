@@ -14,7 +14,8 @@ export const actionTypes = {
     PAUSE: 'PAUSE',
     PLAY: 'PLAY',
     PREVIOUS: 'PREVIOUS',
-    NEXT: 'NEXT'
+    NEXT: 'NEXT',
+    REPLAY: 'REPLAY'
   },
   playlist: {
     ADD: 'ADD',

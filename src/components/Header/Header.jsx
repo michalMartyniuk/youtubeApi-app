@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import Search from '../Search/Search';
 import AppBarPlayer from '../Player/AppBarPlayer';
 import { StateContext } from '../../App';
+import SearchAppBar from '../Search/Search';
 
 export default function Header() {
   const [state, dispatch] = useContext(StateContext);
@@ -12,7 +12,7 @@ export default function Header() {
         <Typography variant="h1">
           YoutubeApp
         </Typography>
-        <Search />
+        <SearchAppBar />
         <AppBarPlayer />
       </Toolbar>
     </AppBar >

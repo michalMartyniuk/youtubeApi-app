@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import YouTube from 'react-youtube';
-import { video_get_player } from '../../store/actions';
+import { video_get_player, video_next, video_select } from '../../store/actions';
 import { StateContext } from '../../App';
 import { actionTypes } from '../../store/actionTypes';
 
@@ -24,18 +24,9 @@ export default function Player() {
   function onReady(event) {
     video_get_player(event.target, dispatch);
   }
-  // const { actions, player } = state.video
-  // const action = Object.keys(actions).filter(action => actions[action] === true)[0]
-  // if (player) {
-  //   switch (action) {
-  //     case "play":
-  //       player.playVideo()
-  //       break;
-  //     case "pause":
-  //       player.pauseVideo()
-  //   }
-  // }
+
   function stateChangeHandler({ data }) {
+    console.log(state.video.player)
     switch (data) {
       case 1:
         if (state.video.actions.play !== true) {
@@ -47,6 +38,12 @@ export default function Player() {
           dispatch({ type: actionTypes.video.PAUSE })
         }
         break
+      case 0:
+        if (state.video.replay) {
+          console.log("replay")
+          video_select(state.video.selected, dispatch)
+        }
+        video_next(state.video.selected, state.playlist.items, dispatch)
       default:
         return
     }

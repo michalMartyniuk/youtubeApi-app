@@ -23,6 +23,7 @@ export default function App() {
     video: {
       searchValue: "",
       nextPage: false,
+      replay: true,
       items: [],
       nextPageToken: null,
       selected: null,
@@ -42,9 +43,9 @@ export default function App() {
 
   useEffect(() => {
     const { nextPageToken } = state.video
-    scrollEvent(nextPageToken, dispatch)
+    // scrollEvent(nextPageToken, dispatch)
     const ytConfig = () => gapiConfig(() => {
-      searchYT("moby", dispatch)
+      searchYT("web development", dispatch)
     })
     window.gapi.load('client', ytConfig)
   }, [window.gapi.load])

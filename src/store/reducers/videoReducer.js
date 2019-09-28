@@ -84,6 +84,11 @@ export const videoReducer = (state, action) => {
         ...state,
         selected: nextVideo
       }
+    case video.REPLAY:
+      return {
+        ...state,
+        replay: action.replayBool
+      }
     default:
       return state
   }

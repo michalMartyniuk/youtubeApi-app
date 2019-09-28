@@ -93,3 +93,9 @@ export const video_next = (selectedVideo, playlist, dispatch) => {
     playlist
   })
 }
+export const video_replay = (replayBool, dispatch) => {
+  dispatch({
+    type: types.video.REPLAY,
+    replayBool,
+  })
+}
