@@ -22,14 +22,16 @@ export default function VideoItem({ video }) {
 
   return (
     <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={video.snippet.thumbnails.medium.url}
-        title={video.snippet.title}
-        onClick={() => {
-          video_select(video, dispatch)
-        }}
-      />
+      <div className={classes.imageOverlay} style={{backgroundColor: "black"}}>
+        <CardMedia
+          className={classes.media}
+          image={video.snippet.thumbnails.medium.url}
+          title={video.snippet.title}
+          onClick={() => {
+            video_select(video, dispatch)
+          }}
+        />
+      </div>
       <CardHeader
         classes={styles.header()}
         title={video.snippet.title.length > 40

@@ -69,7 +69,6 @@ export default function SearchAppBar() {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          inputProps={{ 'aria-label': 'search' }}
           value={state.video.searchValue}
           onChange={(e) => set_search_value(e.target.value, dispatch)}
           onKeyPress={handleEnter}

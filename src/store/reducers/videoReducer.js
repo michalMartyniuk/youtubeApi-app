@@ -31,6 +31,7 @@ export const videoReducer = (state, action) => {
       return {
         ...state,
         items,
+        searchName: state.searchValue,
         nextPageToken: nextPageToken ? nextPageToken : null,
         totalResults: results.pageInfo.totalResults
       }

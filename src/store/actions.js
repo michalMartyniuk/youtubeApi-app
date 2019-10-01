@@ -1,7 +1,67 @@
 import { actionTypes } from './actionTypes';
-const types = actionTypes;
+import firebase from '../config/firebase';
 
-export async function searchYT(query, dispatch, token = null, callback=null) {
+const types = actionTypes;
+const db = firebase.firestore();
+const auth = firebase.auth();
+
+export const getFirestoreData = () => {
+  db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log(doc)
+    });
+  });
+}
+
+export const set_signUp_state = (state, dispatch) => {
+  return dispatch({
+    type: types.ui.SET_SIGNUP_STATE,
+    state
+  })
+}
+export const set_logIn_state = (state, dispatch) => {
+  return dispatch({
+    type: types.ui.SET_LOGIN_STATE,
+    state
+  })
+}
+export const set_email_value = (value, dispatch) => {
+  return dispatch({
+    type: types.auth.SET_EMAIL_VALUE,
+    value
+  })
+}
+export const set_password_value = (value, dispatch) => {
+  return dispatch({
+    type: types.auth.SET_PASSWORD_VALUE,
+    value
+  })
+}
+export const auth_sign_up = (email, password, dispatch) => {
+  auth.createUserWithEmailAndPassword(email, password).then(user => {
+    return dispatch({
+      type: types.auth.SIGNUP,
+      user
+    })
+  })
+}
+export const auth_log_in = (email, password, dispatch) => {
+  auth.signInWithEmailAndPassword(email, password).then(user => {
+    return dispatch({
+      type: types.auth.LOGIN,
+      user
+    })
+  })
+}
+export const auth_log_out = (dispatch) => {
+  auth.signOut().then(() => {
+    return dispatch({
+      type: types.auth.LOGOUT,
+    })
+  })
+}
+
+export async function searchYT(query, dispatch, token = null, callback = null) {
   const config = {
     part: "id, snippet",
     q: query,

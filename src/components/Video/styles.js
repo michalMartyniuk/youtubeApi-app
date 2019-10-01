@@ -25,6 +25,9 @@ export const useStyles = makeStyles(theme => ({
     "&:hover": {
       backgroundColor: "#d27d18"
     }
+  },
+  imageOverlay: {
+    backgroundColor: "black",
   }
 }));
 

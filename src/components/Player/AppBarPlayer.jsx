@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, IconButton, Typography } from '@material-ui/core';
+import { Card, CardContent, IconButton, Typography, Button } from '@material-ui/core';
 import { SkipPrevious, SkipNext, PlayArrow, Pause, ArrowDownward, ArrowUpward } from '@material-ui/icons';
 import { StateContext } from '../../App';
-import { video_pause, video_play, video_previous, video_next, set_playlist_state } from '../../store/actions';
+import { video_pause, video_play, video_previous, video_next, set_playlist_state, set_logIn_state, set_signUp_state } from '../../store/actions';
 
 const styles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexDirection: "column",
-    marginRight: "-22px",
     marginLeft: "auto",
   },
   card: {
@@ -48,7 +46,18 @@ const styles = makeStyles(theme => ({
     borderRadius: 0,
     padding: 14
   },
-  playlistButton: {
+  authButtons: {
+    display: "flex",
+    alignItems: "center",
+    width: 200,
+    margin: "auto"
+  },
+  authButton: {
+    border: "1px solid white",
+    borderRadius: 0,
+    padding: "6px 16px",
+    margin: "auto",
+    color: theme.palette.common.white,
   }
 }));
 
@@ -93,19 +102,19 @@ export default function AppBarPlayer(props) {
           <VideoTitle title={videoTitle} />
         </CardContent>
         <div className={classes.controls}>
-          {state.video.selected ?
-            <IconButton 
-            className={classes.iconButton}
-            onClick={() => video_previous(state.video.selected, state.playlist.items, dispatch)}
+          {state.playlist.items.length > 0 ?
+            <IconButton
+              className={classes.iconButton}
+              onClick={() => video_previous(state.video.selected, state.playlist.items, dispatch)}
             >
               <SkipPrevious />
             </IconButton> : null}
           <PlayIcon />
           <PauseIcon />
-          {state.video.selected ?
-            <IconButton 
-            className={classes.iconButton}
-            onClick={() => video_next(state.video.selected, state.playlist.items, dispatch)}
+          {state.playlist.items.length > 0 ?
+            <IconButton
+              className={classes.iconButton}
+              onClick={() => video_next(state.video.selected, state.playlist.items, dispatch)}
             >
               <SkipNext />
             </IconButton> : null}
@@ -129,6 +138,16 @@ export default function AppBarPlayer(props) {
           </div>
         </div>
       </Card>
+      <div className={classes.authButtons}>
+        <Button
+          onClick={() => set_logIn_state(true, dispatch)}
+          className={classes.authButton}
+        >Log in</Button>
+        <Button
+          onClick={() => set_signUp_state(true, dispatch)}
+          className={classes.authButton}
+        >Sign up</Button>
+      </div>
     </div>
   );
 }

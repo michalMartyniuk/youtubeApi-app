@@ -1,8 +1,18 @@
 import { actionTypes } from '../actionTypes';
 
-export const uiReducer = ( state, action ) => {
+export const uiReducer = (state, action) => {
   const { ui } = actionTypes
-  switch ( action.type ) {
+  switch (action.type) {
+    case ui.SET_SIGNUP_STATE:
+      return {
+        ...state,
+        signUp_state: action.state
+      }
+    case ui.SET_LOGIN_STATE:
+      return {
+        ...state,
+        logIn_state: action.state
+      }
     case ui.SET_NOTIFICATION_STATE:
       return {
         ...state,
