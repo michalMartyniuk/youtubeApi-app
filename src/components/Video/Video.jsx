@@ -6,8 +6,8 @@ import { StateContext } from '../../App';
 
 const styles = makeStyles(theme => ({
   container: {
-    margin: "0 85px 0 85px",
-    marginTop: theme.spacing(15)
+    margin: "0 85px",
+    marginTop: theme.spacing(12)
   },
   resultsHeading: {
   },
@@ -33,12 +33,12 @@ export default function Video() {
   const classes = styles()
   return (
     <div className={classes.container}>
-      <Typography
+      {/* <Typography
         variant="h2"
         className={classes.resultsHeading}
       >
         {state.video.searchName ? `Search results for "${state.video.searchName}"` : null}
-      </Typography>
+      </Typography> */}
       <Grid container spacing={3} classes={gridStyles()}>
         {state.video.items
           ? state.video.items.map(video =>

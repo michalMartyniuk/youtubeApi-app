@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -12,7 +11,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 import { StateContext } from '../../App';
-import { set_notification_state } from '../../store/actions';
+import { set_notification } from '../../store/actions';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -21,7 +20,11 @@ const variantIcon = {
   info: InfoIcon,
 };
 
-const useStyles1 = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
+  content: {
+    fontSize: "1.9rem",
+    padding: "10px 20px"
+  },
   success: {
     backgroundColor: green[600],
   },
@@ -35,11 +38,11 @@ const useStyles1 = makeStyles(theme => ({
     backgroundColor: amber[700],
   },
   icon: {
-    fontSize: 20,
+    fontSize: 26,
+    marginRight: 12
   },
-  iconVariant: {
-    opacity: 0.9,
-    marginRight: theme.spacing(1),
+  closeIcon: {
+    fontSize: 26
   },
   message: {
     display: 'flex',
@@ -49,23 +52,23 @@ const useStyles1 = makeStyles(theme => ({
 
 function MySnackbarContentWrapper(props) {
   const [ state, dispatch ] = useContext( StateContext );
-  const classes = useStyles1();
+  const classes = useStyles();
   const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
   return (
     <SnackbarContent
       className={clsx(classes[variant], className)}
-      aria-describedby="client-snackbar"
+      aria-describedby="client-notification"
       message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
+        <span id="client-notification" className={classes.message}>
+          <Icon className={classes.icon} />
           {message}
         </span>
       }
       action={[
         <IconButton key="close" aria-label="close" color="inherit" onClick={onClose}>
-          <CloseIcon className={classes.icon} />
+          <CloseIcon className={classes.closeIcon} />
         </IconButton>,
       ]}
       {...other}
@@ -73,22 +76,16 @@ function MySnackbarContentWrapper(props) {
   );
 }
 
-MySnackbarContentWrapper.propTypes = {
-  className: PropTypes.string,
-  message: PropTypes.string,
-  onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
-};
-
-export default function Notification(props) {
+export default function Notification({message, variant}) {
   const [state, dispatch] = useContext(StateContext);
-  const { snackbar_state } = state.ui;
+  const { notification } = state.ui;
+  const classes = useStyles();
 
   function handleClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
-    set_notification_state(false, dispatch);
+    set_notification(false, dispatch);
   }
 
   return (
@@ -98,14 +95,15 @@ export default function Notification(props) {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={snackbar_state}
-        autoHideDuration={2000}
+        open={notification.state}
+        autoHideDuration={5000}
         onClose={handleClose}
       >
         <MySnackbarContentWrapper
           onClose={handleClose}
-          variant="success"
-          message="This is a success message!"
+          variant={variant}
+          message={message}
+          className={classes.content}
         />
       </Snackbar>
     </div>

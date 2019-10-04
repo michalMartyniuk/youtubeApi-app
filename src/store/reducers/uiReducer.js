@@ -3,6 +3,11 @@ import { actionTypes } from '../actionTypes';
 export const uiReducer = (state, action) => {
   const { ui } = actionTypes
   switch (action.type) {
+    case ui.SET_HOMEPAGE_STATE:
+      return {
+        ...state,
+        homepage_state: action.state
+      }
     case ui.SET_SIGNUP_STATE:
       return {
         ...state,
@@ -16,7 +21,11 @@ export const uiReducer = (state, action) => {
     case ui.SET_NOTIFICATION_STATE:
       return {
         ...state,
-        snackbar_state: action.snackbar_state
+        notification: {
+          state: action.state,
+          message: action.message,
+          variant: action.variant
+        }
       }
     case ui.SET_PLAYLIST_STATE:
       return {

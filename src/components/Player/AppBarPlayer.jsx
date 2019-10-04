@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, IconButton, Typography, Button } from '@material-ui/core';
 import { SkipPrevious, SkipNext, PlayArrow, Pause, ArrowDownward, ArrowUpward } from '@material-ui/icons';
 import { StateContext } from '../../App';
-import { video_pause, video_play, video_previous, video_next, set_playlist_state, set_logIn_state, set_signUp_state } from '../../store/actions';
+import { video_pause, video_play, video_previous, video_next, set_playlist_state, set_logIn_state, set_signUp_state, set_notification, auth_log_out } from '../../store/actions';
 
 const styles = makeStyles(theme => ({
   container: {
@@ -50,7 +50,8 @@ const styles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     width: 200,
-    margin: "auto"
+    margin: "auto",
+    marginLeft: 12
   },
   authButton: {
     border: "1px solid white",
@@ -138,16 +139,24 @@ export default function AppBarPlayer(props) {
           </div>
         </div>
       </Card>
-      <div className={classes.authButtons}>
-        <Button
-          onClick={() => set_logIn_state(true, dispatch)}
-          className={classes.authButton}
-        >Log in</Button>
-        <Button
-          onClick={() => set_signUp_state(true, dispatch)}
-          className={classes.authButton}
-        >Sign up</Button>
-      </div>
+      {/* <div className={classes.authButtons}>
+        {state.auth.loggedIn
+          ? <Button
+            onClick={() => auth_log_out(dispatch)}
+            className={classes.authButton}
+          >Log out</Button>
+          : <Fragment>
+            <Button
+              onClick={() => set_logIn_state(true, dispatch)}
+              className={classes.authButton}
+            >Log in</Button>
+            <Button
+              onClick={() => set_signUp_state(true, dispatch)}
+              className={classes.authButton}
+            >Sign up</Button>
+          </Fragment>
+        }
+      </div> */}
     </div>
   );
 }

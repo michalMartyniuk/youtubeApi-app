@@ -13,6 +13,18 @@ export const getFirestoreData = () => {
   });
 }
 
+export const set_homepage_state = (state, dispatch) => {
+  if (state === true) {
+    document.body.style.backgroundColor = "rgb(66, 71, 88)"
+  } else if (state === false) {
+    document.body.style.removeProperty("background-color")
+  }
+  return dispatch({
+    type: types.ui.SET_HOMEPAGE_STATE,
+    state
+  })
+}
+
 export const set_signUp_state = (state, dispatch) => {
   return dispatch({
     type: types.ui.SET_SIGNUP_STATE,
@@ -39,6 +51,10 @@ export const set_password_value = (value, dispatch) => {
 }
 export const auth_sign_up = (email, password, dispatch) => {
   auth.createUserWithEmailAndPassword(email, password).then(user => {
+    set_notification(true, dispatch,
+      "You have successfully created an account and are now logged in",
+      "success"
+    )
     return dispatch({
       type: types.auth.SIGNUP,
       user
@@ -47,6 +63,10 @@ export const auth_sign_up = (email, password, dispatch) => {
 }
 export const auth_log_in = (email, password, dispatch) => {
   auth.signInWithEmailAndPassword(email, password).then(user => {
+    set_notification(true, dispatch,
+      "You have successfully logged in",
+      "success"
+    )
     return dispatch({
       type: types.auth.LOGIN,
       user
@@ -55,6 +75,10 @@ export const auth_log_in = (email, password, dispatch) => {
 }
 export const auth_log_out = (dispatch) => {
   auth.signOut().then(() => {
+    set_notification(true, dispatch,
+      "You have successfully logged out",
+      "success"
+    )
     return dispatch({
       type: types.auth.LOGOUT,
     })
@@ -72,6 +96,8 @@ export async function searchYT(query, dispatch, token = null, callback = null) {
   if (token) config.pageToken = token
   const { result } = await window.gapi.client.youtube.search.list(config);
   const results = result
+
+  set_homepage_state(false, dispatch)
   dispatch({ type: types.video.SET_VIDEOS, query, results })
   if (callback) callback()
 }
@@ -89,10 +115,12 @@ export const remove_from_playlist = (video, dispatch) => {
   dispatch({ type: types.playlist.REMOVE, video })
 }
 
-export const set_notification_state = (snackbar_state, dispatch) => {
+export const set_notification = (state, dispatch, message = null, variant = null, ) => {
   dispatch({
     type: types.ui.SET_NOTIFICATION_STATE,
-    snackbar_state
+    state,
+    message,
+    variant
   })
 }
 export const set_playlist_state = (playlist_state, dispatch) => {
